@@ -408,8 +408,8 @@ src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
 <div class="button">
     <div class="nav-but">
         <h5 class="vil">
-                        <strong>04 Iyun 2025</strong> - 
-            <strong>7 Zulhijja 1446</strong>
+                        <strong id="milodiy">04 Iyun 2025</strong> - 
+            <strong id="hijriy">7 Zulhijja 1446</strong>
         </h5>
         <div class="btn-group btnmar" role="group" aria-label="Basic outlined example">
             <a href="https://namozvaqti.uz" class="btn btn-light px-4 but1">Bugun</a>
@@ -1231,6 +1231,52 @@ src=https://namozvaqti.uz/img/huawei.png width="43" height="43" alt="play market
 
 </script>
 </footer>
+<script>
+    // Milodiy sana
+    const today = new Date();
+    const months = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
+    const miladiSana = `${today.getDate()} ${months[today.getMonth()]} ${today.getFullYear()}`;
+
+    // Arabcha → lotincha Hijriy oylar tarjimasi
+    const hijriMonthMap = {
+      "محرم": "Muharram",
+      "صفر": "Safar",
+      "ربيع الأول": "Rabi'ul-avval",
+      "ربيع الآخر": "Rabi'us-soniy",
+      "جمادى الأولى": "Jumadul-avval",
+      "جمادى الآخرة": "Jumadus-soniy",
+      "رجب": "Rajab",
+      "شعبان": "Sha'bon",
+      "رمضان": "Ramazon",
+      "شوال": "Shavvol",
+      "ذو القعدة": "Zulqa'da",
+      "ذو الحجة": "Zulhijja"
+    };
+
+    // Hijriy sana olish
+    const hijriFormatter = new Intl.DateTimeFormat('ar-TN-u-ca-islamic', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+
+    const hijriParts = hijriFormatter.formatToParts(today);
+    let hijriDay = '', hijriMonth = '', hijriYear = '';
+
+    hijriParts.forEach(part => {
+      if (part.type === 'day') hijriDay = part.value;
+      if (part.type === 'month') hijriMonth = hijriMonthMap[part.value] || part.value;
+      if (part.type === 'year') hijriYear = part.value;
+    });
+
+    const hijriSana = `${hijriDay} ${hijriMonth} ${hijriYear}`;
+
+    // Natijani chiqarish
+    document.getElementById('milodiy').innerHTML = `
+      ${miladiSana}`;
+    document.getElementById('hijriy').innerHTML = `
+      ${hijriSana}`;
+</script>
 <script>
     const now = new Date();
     const hours = now.getHours().toString().padStart(2, '0');
