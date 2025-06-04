@@ -1307,5 +1307,13 @@ src=https://namozvaqti.uz/img/huawei.png width="43" height="43" alt="play market
         $("#remaining_period").text(`${timeBlocks[period]} : `)
     }, 1000);
 </script>
+<script>
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    const seconds = now.getSeconds().toString().padStart(2, '0');
+
+    document.getElementById('current_time').textContent = `${hours}:${minutes}:${seconds}`;
+</script>
 </body>
 </html>
