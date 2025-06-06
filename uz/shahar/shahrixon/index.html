@@ -1347,7 +1347,7 @@ document.getElementById('current_time').textContent = `${hours}:${minutes}:${sec
         return hrs + ':' + mins + ':' + secs;
     }
     window.addEventListener('DOMContentLoaded', async () => {
-        const vaqtlar = await namozvaqtianiqlaAPI("Toshkent");
+        const vaqtlar = await namozvaqtianiqlaAPI("Shahrixon");
         let times = vaqtlar.map(v => v.trim());
 
         let currentTime = moment($("#current_time").text(), "HH:mm:ss");
@@ -1359,8 +1359,6 @@ document.getElementById('current_time').textContent = `${hours}:${minutes}:${sec
             }
         }
         if (currentTime.diff(moment(times[5], "HH:mm")) > 0) period++;
-
-        var time = times[period]
         var difference = currentTime.diff(moment(times[period], "HH:mm"))
         
         setInterval(() => {
