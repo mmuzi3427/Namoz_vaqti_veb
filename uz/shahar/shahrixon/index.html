@@ -415,8 +415,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
 <div class="button">
     <div class="nav-but">
         <h5 class="vil">
-                        <strong>05 Iyun 2025</strong> - 
-            <strong>8 Zulhijja 1446</strong>
+                        <strong id="umumiysana">Sanalar yuklanmoqda...</strong>
         </h5>
         <div class="btn-group btnmar" role="group" aria-label="Basic outlined example">
             <a href="https://namozvaqti.uz" class="btn btn-light px-4 but1">Bugun</a>
@@ -514,7 +513,8 @@ src=https://namozvaqti.uz/img/huawei.png width="43" height="43" alt="play market
     Saytdan ma'lumot olinganda manba ko'rsatilishi shart.    </div>
     <script src="https://namozvaqti.uz/js/jquery-3.5.1.min.js"></script>
     <script src="https://namozvaqti.uz/js/bootstrap.bundle.min.js"></script>
-    <script src="https://namozvaqti.uz/js/search.js"></script>
+    <script src="../../../js/search.js"></script>
+    <script src="../../../js/namoz_vaqt.js"></script>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript" >
         (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -1242,15 +1242,7 @@ src=https://namozvaqti.uz/img/huawei.png width="43" height="43" alt="play market
 
 <script src=https://namozvaqti.uz/js/moment.js></script>
 <script>
-    const times = [
-        '03:00',
-        '04:42',
-        '12:15',
-        '17:22',
-        '19:42',
-        '21:21',
-        '02:59'
-    ];
+    const times = await namozvaqtianiqla("Shahrixon");
     const timeBlocks = ['Bomdodgacha', 'Quyoshgacha', 'Peshingacha', 'Asrgacha', 'Shomgacha', 'Xuftongacha', `Ertangi bomdodgacha` ];
 
     function msToTime(s) {
