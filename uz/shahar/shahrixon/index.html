@@ -1250,34 +1250,34 @@ try {
 
     if (data.code === 200) {
         const timings = data.data.timings;
-        return [
-            timings.Fajr,
-            timings.Sunrise,
-            timings.Dhuhr,
-            timings.Asr,
-            timings.Maghrib,
-            timings.Isha
-        ];
+        return {
+            bomdod: timings.Fajr,
+            quyosh: timings.Sunrise,
+            peshin: timings.Dhuhr,
+            asr: timings.Asr,
+            shum: timings.Maghrib,
+            xufton: timings.Isha
+        };
     } else {
-        return [
-            "00:00",
-            "00:00",
-            "00:00",
-            "00:00",
-            "00:00",
-            "00:00",
-        ];
+        return {
+            bomdod: "00:00",
+            quyosh: "00:00",
+            peshin: "00:00",
+            asr: "00:00",
+            shom: "00:00",
+            xufton: "00:00",
+        };
     }
 } catch (error) {
-        console.error(error);
-        return [
-            "00:00",
-            "00:00",
-            "00:00",
-            "00:00",
-            "00:00",
-            "00:00",
-        ];
+        //console.error(error);
+        return {
+            bomdod: "00:00",
+            quyosh: "00:00",
+            peshin: "00:00",
+            asr: "00:00",
+            shom: "00:00",
+            xufton: "00:00",
+        };
     }
 }
 // Milodiy sana
@@ -1330,14 +1330,15 @@ document.getElementById('current_time').textContent = `${hours}:${minutes}:${sec
 </script>
 <script src=https://namozvaqti.uz/js/moment.js></script>
 <<script>
+    const tlists = await namozvaqtianiqla("Shahrixon");
     const times = [
-        "00:00",
-        "00:00",
-        "00:00",
-        "00:00",
-        "00:00",
-        "00:00",
-    ]//Array(await namozvaqtianiqla("Shahrixon"));
+        tlists.bomdod,
+        tlists.quyosh,
+        tlists.peshin,
+        tlists.asr,
+        tlists.shom,
+        tlists.xufton,
+    ]
     const timeBlocks = ['Bomdodgacha', 'Quyoshgacha', 'Peshingacha', 'Asrgacha', 'Shomgacha', 'Xuftongacha', `Ertangi bomdodgacha` ];
 
     function msToTime(s) {
