@@ -1317,12 +1317,12 @@ document.getElementById('current_time').textContent = `${hours}:${minutes}:${sec
         document.getElementById('xufton').textContent = `${vaqtlar[5]}`
     });
     const times = [
-        document.getElementById('bomdod').innerHTML,
-        document.getElementById('quyosh').innerHTML,
-        document.getElementById('peshin').innerHTML,
-        document.getElementById('asr').innerHTML,
-        document.getElementById('shom').innerHTML,
-        document.getElementById('xufton').innerHTML
+        document.getElementById('bomdod').value.trim(),
+        document.getElementById('quyosh').value.trim(),
+        document.getElementById('peshin').value.trim(),
+        document.getElementById('asr').value.trim(),
+        document.getElementById('shom').value.trim(),
+        document.getElementById('xufton').value.trim()
     ];
     
     const timeBlocks = ['Bomdodgacha', 'Quyoshgacha', 'Peshingacha', 'Asrgacha', 'Shomgacha', 'Xuftongacha', `Ertangi bomdodgacha` ];
