@@ -1300,34 +1300,41 @@ document.getElementById('current_time').textContent = `${hours}:${minutes}:${sec
 
                 if (data.code === 200) {
                     const timings = data.data.timings;
-                    return {
-                        Fajr: timings.Fajr,
-                        Sunrise: timings.Sunrise,
-                        Dhuhr: timings.Dhuhr,
-                        Asr: timings.Asr,
-                        Maghrib: timings.Maghrib,
-                        Isha: timings.Isha
-                    };
+                    return [
+                        timings.Fajr,
+                        timings.Sunrise,
+                        timings.Dhuhr,
+                        timings.Asr,
+                        timings.Maghrib,
+                        timings.Isha
+                    ];
                 } else {
-                    return null;
+                    return [
+                        "00:00",
+                        "00:00",
+                        "00:00",
+                        "00:00",
+                        "00:00",
+                        "00:00",
+                    ];
                 }
             } catch (error) {
-                console.error(error);
-                return null;
+                //console.error(error);
+                return [
+                    "00:00",
+                    "00:00",
+                    "00:00",
+                    "00:00",
+                    "00:00",
+                    "00:00",
+                ];
             }
         }
-    let times = []
-    async function korsatNamozVaqti() {
-        const shahar = "Shahrixon"
-        const vaqtlar = await namozvaqtianiqla(shahar);
-        times = [
-            vaqtlar.Fajr,
-            vaqtlar.Sunrise,
-            vaqtlar.Dhuhr,
-            vaqtlar.Asr,
-            vaqtlar.Maghrib,
-            vaqtlar.Isha
-        ]
+    let times = null
+    namozvaqtianiqla("Shahrixon").then(vaqtlar => {
+        times = vaqtlar;
+    });
+    
     
     const timeBlocks = ['Bomdodgacha', 'Quyoshgacha', 'Peshingacha', 'Asrgacha', 'Shomgacha', 'Xuftongacha', `Ertangi bomdodgacha` ];
 
