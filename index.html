@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Namoz Vaqtlari</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            padding: 30px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 16px;
+            border: 1px solid #aaa;
+        }
+    </style>
+</head>
+<body>
+    <h2>Namoz vaqtlarini aniqlash</h2>
+    <input type="text" id="shahar" placeholder="Shahar nomini kiriting">
+    <br>
+    <button onclick="korsatNamozVaqti()">Namoz vaqtlarini ko‘rish</button>
+
+    <div id="natija"></div>
+
+    <script>
+        async function namozvaqtianiqla(shahar) {
+            const apiUrl = `https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(shahar)}&country=Uzbekistan&method=2`;
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+
+                if (data.code === 200) {
+                    const timings = data.data.timings;
+                    return {
+                        Fajr: timings.Fajr,
+                        Sunrise: timings.Sunrise,
+                        Dhuhr: timings.Dhuhr,
+                        Asr: timings.Asr,
+                        Maghrib: timings.Maghrib,
+                        Isha: timings.Isha
+                    };
+                } else {
+                    return null;
+                }
+            } catch (error) {
+                console.error(error);
+                return null;
+            }
+        }
+
+        async function korsatNamozVaqti() {
+            const shahar = document.getElementById("shahar").value.trim();
+            const natijaDiv = document.getElementById("natija");
+
+            if (!shahar) {
+                natijaDiv.innerHTML = "<p>Iltimos, shahar nomini kiriting.</p>";
+                return;
+            }
+
+            natijaDiv.innerHTML = "<p>Yuklanmoqda...</p>";
+            const vaqtlar = await namozvaqtianiqla(shahar);
+
+            if (!vaqtlar) {
+                natijaDiv.innerHTML = "<p>Ma'lumot topilmadi yoki xatolik yuz berdi.</p>";
+                return;
+            }
+
+            natijaDiv.innerHTML = `
+                <h3>${shahar} shahri uchun namoz vaqtlari</h3>
+                <table>
+                    <tr><th>Bomdod (Fajr)</th><td>${vaqtlar.Fajr}</td></tr>
+                    <tr><th>Quyosh (Sunrise)</th><td>${vaqtlar.Sunrise}</td></tr>
+                    <tr><th>Peshin (Dhuhr)</th><td>${vaqtlar.Dhuhr}</td></tr>
+                    <tr><th>Asr</th><td>${vaqtlar.Asr}</td></tr>
+                    <tr><th>Shom (Maghrib)</th><td>${vaqtlar.Maghrib}</td></tr>
+                    <tr><th>Xufton (Isha)</th><td>${vaqtlar.Isha}</td></tr>
+                </table>
+            `;
+        }
+    </script>
+</body>
+</html>
