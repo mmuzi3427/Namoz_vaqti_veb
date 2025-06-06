@@ -1,50 +1,49 @@
 async function namozvaqtianiqla(shahar) {
-        const apiUrl = `https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(shahar)}&country=Uzbekistan&method=2`;
+    const apiUrl = `https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(shahar)}&country=Uzbekistan&method=2`;
 
-        try {
-            const response = await fetch(apiUrl);
-            const data = await response.json();
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
 
-            if (data.code === 200) {
-                const timings = data.data.timings;
+        if (data.code === 200) {
+            const timings = data.data.timings;
+            return [
+                timings.Fajr,
+                timings.Sunrise,
+                timings.Dhuhr,
+                timings.Asr,
+                timings.Maghrib,
+                timings.Isha
+            ];
+        } else {
                 return [
-                    timings.Fajr,
-                    timings.Sunrise,
-                    timings.Dhuhr,
-                    timings.Asr,
-                    timings.Maghrib,
-                    timings.Isha
+                "00:00",
+                "00:00",
+                "00:00",
+                "00:00",
+                "00:00",
+                "00:00",
                 ];
-                } else {
-                    return [
-                      "00:00",
-                      "00:00",
-                      "00:00",
-                      "00:00",
-                      "00:00",
-                      "00:00",
-                    ];
-                }
-            } catch (error) {
-                console.error(error);
-                return [
-                      "00:00",
-                      "00:00",
-                      "00:00",
-                      "00:00",
-                      "00:00",
-                      "00:00",
-                    ];
             }
+        } catch (error) {
+            console.error(error);
+            return [
+                "00:00",
+                "00:00",
+                "00:00",
+                "00:00",
+                "00:00",
+                "00:00",
+                ];
+        }
 }
+// Milodiy sana
+const today = new Date();
+const months = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
+const miladiSana = `${today.getDate()} ${months[today.getMonth()]} ${today.getFullYear()}`;
 
-    // Milodiy sana
-    const today = new Date();
-    const months = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
-    const miladiSana = `${today.getDate()} ${months[today.getMonth()]} ${today.getFullYear()}`;
-
-    // Arabcha → lotincha Hijriy oylar tarjimasi
-    const hijriMonthMap = {
+// Arabcha → lotincha Hijriy oylar tarjimasi
+const hijriMonthMap = {
       "محرم": "Muharram",
       "صفر": "Safar",
       "ربيع الأول": "Rabi'ul-avval",
@@ -58,22 +57,21 @@ async function namozvaqtianiqla(shahar) {
       "ذو القعدة": "Zulqa'da",
       "ذو الحجة": "Zulhijja"
     };
-
-    // Hijriy sana olish
-    const hijriFormatter = new Intl.DateTimeFormat('ar-TN-u-ca-islamic', {
+// Hijriy sana olish
+const hijriFormatter = new Intl.DateTimeFormat('ar-TN-u-ca-islamic', {
       day: 'numeric',
       month: 'long',
       year: 'numeric'
     });
 
-    const hijriParts = hijriFormatter.formatToParts(today);
-    let hijriDay = '', hijriMonth = '', hijriYear = '';
+const hijriParts = hijriFormatter.formatToParts(today);
+let hijriDay = '', hijriMonth = '', hijriYear = '';
 
-    hijriParts.forEach(part => {
-      if (part.type === 'day') hijriDay = part.value;
-      if (part.type === 'month') hijriMonth = hijriMonthMap[part.value] || part.value;
-      if (part.type === 'year') hijriYear = part.value;
-    });
+hijriParts.forEach(part => {
+    if (part.type === 'day') hijriDay = part.value;
+    if (part.type === 'month') hijriMonth = hijriMonthMap[part.value] || part.value;
+    if (part.type === 'year') hijriYear = part.value;
+});
 
     const hijriSana = `${hijriDay} ${hijriMonth} ${hijriYear}`;
 
