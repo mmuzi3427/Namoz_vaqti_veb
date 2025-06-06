@@ -84,3 +84,67 @@ const minutes = now.getMinutes().toString().padStart(2, '0');
 const seconds = now.getSeconds().toString().padStart(2, '0');
 
 document.getElementById('current_time').textContent = `${hours}:${minutes}:${seconds}`;
+
+const times = await namozvaqtianiqla("Shahrixon");
+const timeBlocks = ['Bomdodgacha', 'Quyoshgacha', 'Peshingacha', 'Asrgacha', 'Shomgacha', 'Xuftongacha', `Ertangi bomdodgacha` ];
+
+function msToTime(s) {
+    if (s < 0) s = -s;
+    var ms = s % 1000;
+    s = (s - ms) / 1000;
+    var secs = s % 60;
+    s = (s - secs) / 60;
+    var mins = s % 60;
+    var hrs = (s - mins) / 60;
+    hrs = hrs < 10 ? "0" + hrs : hrs;
+    mins = mins < 10 ? "0" + mins : mins;
+    secs = secs < 10 ? "0" + secs : secs;
+    return hrs + ':' + mins + ':' + secs;
+}
+
+var currentTime = moment($("#current_time").text(), "HH:mm:ss");
+var period = 0;
+for (var i = 0; i < 6; i++) {
+    if (currentTime.diff(moment(times[i], "HH:mm")) > 0){
+        period = i;
+    }
+    if(currentTime.diff(moment(times[5], "HH:mm")) > 0){
+        period++
+    }
+}
+
+var time = times[period]
+var difference = currentTime.diff(moment(times[period], "HH:mm"))
+
+setInterval(() => {
+    $("#current_time").text(currentTime.format("HH:mm:ss"));
+
+    if(period === 6){
+        difference = moment(times[period], "HH:mm").add(1, 'days').diff(currentTime)
+    } else {
+        difference = currentTime.diff(moment(times[period], "HH:mm"))
+    }
+
+    currentTime = currentTime.add(1, "seconds");
+        
+    if(period > 0){
+        $(".ad__item").eq(period-1).addClass(" active_time ");
+    } else{
+        $(".ad__item").eq(period).addClass(" active_time ");
+    }
+    if (currentTime.diff(moment(times[period], "HH:mm")) > 0) {
+        if(period > 0){
+            if(period === 6){
+                $(".ad__item").eq(period - 2).removeClass(" active_time ");
+            } else {
+                $(".ad__item").eq(period - 1).removeClass(" active_time ");
+            }
+        } else{
+            $(".ad__item").eq(period).removeClass(" active_time ");
+        }
+        period++
+        period = period > 6 ? 6 : period;
+    }
+    $("#remaining_time").text(msToTime(difference))
+    $("#remaining_period").text(`${timeBlocks[period]} : `)
+}, 1000);
