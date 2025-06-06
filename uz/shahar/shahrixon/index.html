@@ -1308,7 +1308,9 @@ document.getElementById('current_time').textContent = `${hours}:${minutes}:${sec
             return ["00:00","00:00","00:00","00:00","00:00","00:00"];
         }
     }
+    let times = [];
     namozvaqtianiqlaAPI("Shahrixon").then(vaqtlar => {
+        times = vaqtlar;
         document.getElementById('bomdod').textContent = `${vaqtlar[0]}`;
         document.getElementById('quyosh').textContent = `${vaqtlar[1]}`;
         document.getElementById('peshin').textContent = `${vaqtlar[2]}`;
@@ -1324,12 +1326,9 @@ document.getElementById('current_time').textContent = `${hours}:${minutes}:${sec
         String(document.getElementById('shom').value.trim()),
         String(document.getElementById('xufton').value.trim())
     ];*/
-    let times = [];
+    
 
-    namozvaqtianiqlaAPI("Toshkent").then(vaqtlar => {
-        times = vaqtlar;
-        //console.log("Saqlangan:", vaqtlarGlobal);
-    });
+    
 </script>
 <script>
     const timeBlocks = ['Bomdodgacha', 'Quyoshgacha', 'Peshingacha', 'Asrgacha', 'Shomgacha', 'Xuftongacha', `Ertangi bomdodgacha` ];
