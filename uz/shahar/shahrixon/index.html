@@ -1365,10 +1365,10 @@ document.getElementById('current_time').textContent = `${hours}:${minutes}:${sec
             
             $("#current_time").text(currentTime.format("HH:mm:ss"));
 
-            if(period === 6){
-                difference = moment(times[period], "HH:mm").add(1, 'days').diff(currentTime)
+            if (period === 6) {
+                difference = moment(times[0], "HH:mm").add(1, 'days').diff(currentTime);
             } else {
-                difference = currentTime.diff(moment(times[period], "HH:mm"))
+                difference = moment(times[period], "HH:mm").diff(currentTime);
             }
 
             currentTime = currentTime.add(1, "seconds");
