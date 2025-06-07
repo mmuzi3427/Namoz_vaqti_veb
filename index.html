@@ -100,5 +100,33 @@
             `;
         }
     </script>
+    <div id="user"></div>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<script>
+    const tg = window.Telegram.WebApp;
+    tg.ready();
+
+    const user = tg.initDataUnsafe.user;
+
+    if (user) {
+        const dataToSend = {
+            id: user.id,
+            first_name: user.first_name,
+            last_name: user.last_name,
+            username: user.username,
+            language_code: user.language_code
+        };
+
+        fetch("./server.py", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(dataToSend)
+        }).then(res => res.json())
+          .then(data => document.getElementById("user").innerHTML = `Server javobi: \n ${data}`);
+    }
+</script>
+    
 </body>
 </html>
