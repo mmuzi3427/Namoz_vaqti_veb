@@ -117,15 +117,7 @@
             language_code: user.language_code
         };
 
-        fetch("./server.py", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(dataToSend)
-        }).then(res => res.json())
-          .then(data => document.getElementById("user").innerHTML = `Server javobi: \n ${data}`);
-    }
+        document.getElementById("user").innerHTML = `<h3>Sizning Telegramdagi ID raqamingiz: ${dataToSend.id}</h3>`
 </script>
     
 </body>
