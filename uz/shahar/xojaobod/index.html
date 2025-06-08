@@ -309,8 +309,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
 <div class="button">
     <div class="nav-but">
         <h5 class="vil">
-                        <strong>05 Iyun 2025</strong> - 
-            <strong>8 Zulhijja 1446</strong>
+                        <strong id="umumiysana">Sanalar yuklanmoqda...</strong>
         </h5>
         <div class="btn-group btnmar" role="group" aria-label="Basic outlined example">
             <a href="https://namozvaqti.uz" class="btn btn-light px-4 but1">Bugun</a>
@@ -322,7 +321,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
 
     <div class="current_time">
         <span>Hozirgi vaqt:  </span>
-        <span id="current_time">14:55:40</span>
+        <span id="current_time">00:00:00</span>
                     <div>
                 <a href="https://namozvaqti.uz/ramazon/xojaobod" class="btn btn-link" style="font-size: 25px">2025 Ramazon taqvimi</a>
             </div>
@@ -1134,17 +1133,18 @@ src=https://namozvaqti.uz/img/huawei.png width="43" height="43" alt="play market
 </footer>
 
 
-<script src=https://namozvaqti.uz/js/moment.js></script>
+<script src=../../../js/moment.js></script>
+<script src="../../../js/namoz_vaqt.js"></script>
 <script>
-    const times = [
-        '02:58',
-        '04:40',
-        '12:13',
-        '17:20',
-        '19:40',
-        '21:19',
-        '02:57'
-    ];
+    //Vaqtlarni sozlash
+    namozvaqtianiqlaAPI("Xoʻjaobod").then(vaqtlar => {
+        document.getElementById('bomdod').textContent = `${vaqtlar[0]}`;
+        document.getElementById('quyosh').textContent = `${vaqtlar[1]}`;
+        document.getElementById('peshin').textContent = `${vaqtlar[2]}`;
+        document.getElementById('asr').textContent = `${vaqtlar[3]}`;
+        document.getElementById('shom').textContent = `${vaqtlar[4]}`;
+        document.getElementById('hufton').textContent = `${vaqtlar[5]}`
+    });
     const timeBlocks = ['Bomdodgacha', 'Quyoshgacha', 'Peshingacha', 'Asrgacha', 'Shomgacha', 'Xuftongacha', `Ertangi bomdodgacha` ];
 
     function msToTime(s) {
@@ -1160,53 +1160,55 @@ src=https://namozvaqti.uz/img/huawei.png width="43" height="43" alt="play market
         secs = secs < 10 ? "0" + secs : secs;
         return hrs + ':' + mins + ':' + secs;
     }
+    window.addEventListener('DOMContentLoaded', async () => {
+        const vaqtlar = await namozvaqtianiqlaAPI("Xoʻjaobod");
+        let times = vaqtlar.map(v => v.trim());
 
-    var currentTime = moment($("#current_time").text(), "HH:mm:ss");
-    var period = 0;
-    for (var i = 0; i < 6; i++) {
-        if (currentTime.diff(moment(times[i], "HH:mm")) > 0){
-            period = i;
-        }
-        if(currentTime.diff(moment(times[5], "HH:mm")) > 0){
-            period++
-        }
-    }
+        let currentTime = moment($("#current_time").text(), "HH:mm:ss");
+        let period = 0;
 
-    var time = times[period]
-    var difference = currentTime.diff(moment(times[period], "HH:mm"))
-
-    setInterval(() => {
-        $("#current_time").text(currentTime.format("HH:mm:ss"));
-
-        if(period === 6){
-            difference = moment(times[period], "HH:mm").add(1, 'days').diff(currentTime)
-        } else {
-            difference = currentTime.diff(moment(times[period], "HH:mm"))
-        }
-
-        currentTime = currentTime.add(1, "seconds");
-        
-        if(period > 0){
-            $(".ad__item").eq(period-1).addClass(" active_time ");
-        } else{
-            $(".ad__item").eq(period).addClass(" active_time ");
-        }
-        if (currentTime.diff(moment(times[period], "HH:mm")) > 0) {
-            if(period > 0){
-                if(period === 6){
-                    $(".ad__item").eq(period - 2).removeClass(" active_time ");
-                } else {
-                    $(".ad__item").eq(period - 1).removeClass(" active_time ");
-                }
-            } else{
-                $(".ad__item").eq(period).removeClass(" active_time ");
+        for (let i = 0; i < 6; i++) {
+            if (currentTime.diff(moment(times[i], "HH:mm")) > 0) {
+                period = i;
             }
-            period++
-            period = period > 6 ? 6 : period;
         }
-        $("#remaining_time").text(msToTime(difference))
-        $("#remaining_period").text(`${timeBlocks[period]} : `)
-    }, 1000);
+        if (currentTime.diff(moment(times[5], "HH:mm")) > 0) period++;
+        var difference = currentTime.diff(moment(times[period], "HH:mm"))
+        
+        setInterval(() => {
+            
+            $("#current_time").text(currentTime.format("HH:mm:ss"));
+
+            if (period === 6) {
+                difference = moment(times[0], "HH:mm").add(1, 'days').diff(currentTime);
+            } else {
+                difference = moment(times[period], "HH:mm").diff(currentTime);
+            }
+
+            currentTime = currentTime.add(1, "seconds");
+        
+            if(period > 0){
+                $(".ad__item").eq(period-1).addClass(" active_time ");
+            } else{
+                $(".ad__item").eq(period).addClass(" active_time ");
+            }
+            if (currentTime.diff(moment(times[period], "HH:mm")) > 0) {
+                if(period > 0){
+                    if(period === 6){
+                        $(".ad__item").eq(period - 2).removeClass(" active_time ");
+                    } else {
+                        $(".ad__item").eq(period - 1).removeClass(" active_time ");
+                    }
+                } else{
+                    $(".ad__item").eq(period).removeClass(" active_time ");
+                }
+                period++
+                period = period > 6 ? 6 : period;
+            }
+            $("#remaining_time").text(msToTime(difference))
+            $("#remaining_period").text(`${timeBlocks[period]} : `)
+        }, 1000);
+    });
 </script>
 </body>
 </html>
