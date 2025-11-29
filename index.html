@@ -1,124 +1,119 @@
 <!DOCTYPE html>
-<html lang="uz">
-<head>
-    <meta charset="UTF-8">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Namoz Vaqtlari</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            text-align: center;
-            padding: 30px;
-        }
-        input, button {
-            padding: 10px;
-            font-size: 16px;
-            margin-top: 10px;
-            background-color: #FFB8E6;
-            color: #5EFF13;
-            transition: 0.5s;
-        }
-        button:active {
-            background-color:white;
-            color: back;
-        }
-        table {
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 8px 16px;
-            border: 1px solid #aaa;
-            color: #aaa;
-        }
-        h3 {
-            color: #aaa;
-        }
-    </style>
-</head>
-<body>
-    <h2>Namoz vaqtlarini aniqlash</h2>
-    <input type="text" id="shahar" placeholder="Shahar nomini kiriting">
-    <br>
-    <button onclick="korsatNamozVaqti()">Namoz vaqtlarini ko‘rish</button>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="./corestyles.css" />
+  </head>
+  <body>
+    <div class="back-noise"></div>
 
-    <div id="natija"></div>
+    <div class="wrapper">
+      <h1 class="title">Namoz Vaqtlari</h1>
+      <div class="line"></div>
 
-    <script>
-        async function namozvaqtianiqla(shahar) {
-            const apiUrl = `https://api.aladhan.com/v1/timingsByCity?city=${encodeURIComponent(shahar)}&country=Uzbekistan&method=2`;
+      <section class="select-region">
+        <h2 class="region-title">Hududni tanlang:</h2>
+        <header>
+          <div class="accordion">
+            <strong id="region">Toshkent</strong>
+            <span id="toggle">
+              <i class="fa-sharp fa-solid fa-chevron-down"></i>
+            </span>
+          </div>
+          <ul class="panel">
+            <li>Andijon</li>
+            <li>Buxoro</li>
+            <li>Farg'оna</li>
+            <li>Guliston</li>
+            <li>Jizzax</li>
+            <li>Namangan</li>
+            <li>Navoiy</li>
+            <li>Nukus</li>
+            <li>Qarshi</li>
+            <li>Samarqand</li>
+            <li>Termiz</li>
+            <li>Toshkent</li>
+            <li>Xiva</li>
+          </ul>
+        </header>
+      </section>
 
-            try {
-                const response = await fetch(apiUrl);
-                const data = await response.json();
+      <div class="region-info">
+        <div class="region-name">
+          <p class="region-name__title">Mintaqa:</p>
+          <p class="region-name__selected-city yellow-text">
+            <span id="reg">Toshkent</span> shahri
+          </p>
+        </div>
 
-                if (data.code === 200) {
-                    const timings = data.data.timings;
-                    return {
-                        Fajr: timings.Fajr,
-                        Sunrise: timings.Sunrise,
-                        Dhuhr: timings.Dhuhr,
-                        Asr: timings.Asr,
-                        Maghrib: timings.Maghrib,
-                        Isha: timings.Isha
-                    };
-                } else {
-                    return null;
-                }
-            } catch (error) {
-                console.error(error);
-                return null;
-            }
-        }
+        <div class="time">
+          <img src="https://67f7e0abc45ae.xvest4.ru/YangiVertual/Api/NamozVaqtlari/app.js/img/calendar.png" alt="calendar" class="calendar-icon" />
+          <div class="dates">
+            <p class="yellow-text date">Seshanba, 20-sentabr</p>
+            <p class="date" id="hijri"></p>
+          </div>
 
-        async function korsatNamozVaqti() {
-            const shahar = document.getElementById("shahar").value.trim();
-            const natijaDiv = document.getElementById("natija");
+          <p class="region-name__title times">
+            <span id="hour">--:--</span>
+          </p>
+        </div>
+      </div>
 
-            if (!shahar) {
-                natijaDiv.innerHTML = "<p>Iltimos, shahar nomini kiriting.</p>";
-                return;
-            }
+      <!-- *** CARDS *** -->
 
-            natijaDiv.innerHTML = "<p>Yuklanmoqda...</p>";
-            const vaqtlar = await namozvaqtianiqla(shahar);
+      <div class="card-wrapper">
+        <div class="card">
+          <p class="time yellow-text">Tong</p>
+          <img src="https://67f7e0abc45ae.xvest4.ru/YangiVertual/Api/NamozVaqtlari/img/Tong.png" alt="Tong" class="card-img" />
+          <h1 class="pray-time">00:00</h1>
+        </div>
 
-            if (!vaqtlar) {
-                natijaDiv.innerHTML = "<p>Ma'lumot topilmadi yoki xatolik yuz berdi.</p>";
-                return;
-            }
+        <div class="card">
+          <p class="time yellow-text">Quyosh</p>
+          <img src="https://67f7e0abc45ae.xvest4.ru/YangiVertual/Api/NamozVaqtlari/img/Quyosh.png" alt="quyosh" class="card-img" />
+          <h1 class="pray-time">00:00</h1>
+        </div>
 
-            natijaDiv.innerHTML = `
-                <h3>${shahar} shahri uchun namoz vaqtlari</h3>
-                <table>
-                    <tr><th>Bomdod (Fajr)</th><td>${vaqtlar.Fajr}</td></tr>
-                    <tr><th>Quyosh (Sunrise)</th><td>${vaqtlar.Sunrise}</td></tr>
-                    <tr><th>Peshin (Dhuhr)</th><td>${vaqtlar.Dhuhr}</td></tr>
-                    <tr><th>Asr</th><td>${vaqtlar.Asr}</td></tr>
-                    <tr><th>Shom (Maghrib)</th><td>${vaqtlar.Maghrib}</td></tr>
-                    <tr><th>Xufton (Isha)</th><td>${vaqtlar.Isha}</td></tr>
-                </table>
-            `;
-        }
-    </script>
-    <div id="user"></div>
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
-<script>
-    const tg = window.Telegram.WebApp;
-    tg.ready();
+        <div class="card">
+          <p class="time yellow-text">Peshin</p>
+          <img src="https://67f7e0abc45ae.xvest4.ru/YangiVertual/Api/NamozVaqtlari/img/Peshin.png" alt="Peshin" class="card-img" />
+          <h1 class="pray-time">00:00</h1>
+        </div>
 
-    const user = tg.initDataUnsafe.user;
+        <div class="card">
+          <p class="time yellow-text">Asr</p>
+          <img src="https://67f7e0abc45ae.xvest4.ru/YangiVertual/Api/NamozVaqtlari/img/Asr.png" alt="Asr" class="card-img" />
+          <h1 class="pray-time">00:00</h1>
+        </div>
 
-    if (user) {
-        const dataToSend = {
-            id: user.id,
-            first_name: user.first_name,
-            last_name: user.last_name,
-            username: user.username,
-            language_code: user.language_code
-        };
-        document.getElementById("user").innerHTML = `<h3>Sizning Telegramdagi ID raqamingiz: ${dataToSend.id}</h3><br>Ismingiz: ${dataToSend.first_name}`;
-    }
-</script>
-    
-</body>
+        <div class="card">
+          <p class="time yellow-text">Shom</p>
+          <img src="https://67f7e0abc45ae.xvest4.ru/YangiVertual/Api/NamozVaqtlari/img/Shom.png" alt="Shom" class="card-img" />
+          <h1 class="pray-time">00:00</h1>
+        </div>
+
+        <div class="card">
+          <p class="time yellow-text">Xufton</p>
+          <img src="https://67f7e0abc45ae.xvest4.ru/YangiVertual/Api/NamozVaqtlari/img/Xufton.png" alt="Xufton" class="card-img" />
+          <h1 class="pray-time">00:00</h1>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://rawgit.com/abdennour/hijri-date/master/cdn/hijri-date-latest.js"
+      type="text/javascript"
+    ></script>
+    <script src="./app.js"></script>
+  </body>
 </html>
