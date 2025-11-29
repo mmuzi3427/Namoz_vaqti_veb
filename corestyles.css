@@ -48,12 +48,12 @@ img {
 
 .line {
   width: 70%;
-  height: 3px;
+  height: 10px;
   /* background-color: rgb(255, 255, 255); */
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: white;/*rgba(255, 255, 255, 0.5);*/
   position: relative;
   margin-bottom: 20px;
-  border-radius: 50px;
+  border-radius: 1px;
 }
 
 .select-region {
@@ -62,6 +62,8 @@ img {
   justify-content: center;
   align-items: center;
   margin: 30px 0;
+  box-shadow: 0 0 30px green, 0 0 30px white;
+  animation: ani1 5s infinite;
 }
 
 header {
@@ -86,6 +88,10 @@ header {
   display: flex;
   justify-content: space-between;
   -webkit-tap-highlight-color: transparent;
+}
+
+.accordion:active {
+    border: 2px solid #ffc700;
 }
 
 .accordion span {
@@ -158,6 +164,40 @@ li:last-child {
   justify-content: space-between;
   font-size: 22px;
   margin: 20px 0;
+  box-shadow: 0 0 10px green, 0 0 10px white;
+  animation: test 10s infinite;
+}
+
+@keyframes test {
+      0%  {
+        box-shadow: 0 0 10px red;
+    } 20% {
+        box-shadow: 0 0 10px orange;
+    } 40% {
+        box-shadow: 0 0 10px yellow;
+    } 60% {
+        box-shadow: 0 0 10px green;
+    } 80% {
+        box-shadow: 0 0 10px blue;
+    } 100% {
+        box-shadow: 0 0 10px purple;
+    }
+}
+
+@keyframes ani1 {
+      0%  {
+        box-shadow: 0 0 30px red,  0 0 30px white;
+    } 20% {
+        box-shadow: 0 0 30px orange,  0 0 30px white;
+    } 40% {
+        box-shadow: 0 0 30px yellow,  0 0 30px white;
+    } 60% {
+        box-shadow: 0 0 30px green,  0 0 30px white;
+    } 80% {
+        box-shadow: 0 0 30px blue,  0 0 30px white;
+    } 100% {
+        box-shadow: 0 0 30px purple,  0 0 30px white;
+    }
 }
 
 .region-name,
@@ -213,6 +253,8 @@ li:last-child {
   background-color: rgba(255, 255, 255, 0.2);
   margin-right: 30px;
   border-radius: 25px;
+  animation: test 15s infinite;
+
 }
 .card-img {
   width: auto;
@@ -294,6 +336,10 @@ li:last-child {
   
   .toggle {
       -webkit-tap-highlight-color: transparent;
+  }
+  
+  .toggle:active {
+      background-color: #ffc700;
   }
 
   .select-region {
