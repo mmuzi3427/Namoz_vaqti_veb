@@ -406,7 +406,7 @@ img {
 
 
 .main-header__brand img {
-    width: 64px;
+    width: 128px;
     border-radius: 50%;
     -webkit-tap-highlight-color: transparent;
     display: inline-block;
