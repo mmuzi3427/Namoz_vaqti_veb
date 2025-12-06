@@ -88,7 +88,8 @@ html,body{
     box-shadow: 0 4px 0 rgba(0,255,255,0.5);
     border: 2px solid yellow;
     border-radius: 10%;
-    width: 40%
+    padding: 10px;
+    font-size: 24px;
     transform: translateY(-2px);
     transition: 0.8s;
     background: white;
