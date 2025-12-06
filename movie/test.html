@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Telegram Mini App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <style>
+    body {
+  font-family: sans-serif;
+  padding: 20px;
+  background: var(--tg-theme-bg-color);
+  color: var(--tg-theme-text-color);
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border: 1px solid var(--tg-theme-hint-color);
+  border-radius: 8px;
+  background: var(--tg-theme-secondary-bg-color);
+  color: var(--tg-theme-text-color);
+      }
+    
+  </style>
+</head>
+<body>
+
+<div id="content">
+  <h2>Assalomu alaykum!</h2>
+  <p id="user"></p>
+
+  <input type="text" id="name" placeholder="Ismingiz">
+  <button id="send">Yuborish</button>
+</div>
+
+<script>
+  const tg = window.Telegram.WebApp;
+
+tg.expand(); // WebAppni to‘liq ekran qilish
+
+document.getElementById("user").innerHTML =
+    `Foydalanuvchi: ${tg.initDataUnsafe.user.first_name}`;
+
+document.getElementById("send").onclick = () => {
+    let data = {
+        name: document.getElementById("name").value,
+        id: tg.initDataUnsafe.user.id
+    };
+
+    tg.sendData(JSON.stringify(data)); // Botga yuborish
+};
+    
+</script>
+
+</body>
+</html>
