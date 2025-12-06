@@ -1,4 +1,4 @@
-
+const tg = window.Telegram.WebApp;
 
 function alertf(dTitle, text, timeSleep=1){
                 setTimeout(function() {
@@ -21,6 +21,7 @@ function alertf(dTitle, text, timeSleep=1){
             }
             
             function openlink(url, sleeptime=1){
+                tg.BackButton.show();
                 setTimeout(function() {
                     window.location.href = url;
                 }, sleeptime*1000);
@@ -342,3 +343,8 @@ fetch("https://docs.google.com/spreadsheets/d/1XzUtWC6VFYFVqO36Xs9tvwAYUVOCu45P3
   });
 
 })();
+tg.expand(); // WebAppni to‘liq ekran qilish
+tg.BackButton.onClick(() => {
+    window.location.href = "https://namozvaqti-uz.netlify.app/movie";
+});
+  tg.BackButton.hide();
