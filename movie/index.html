@@ -1,0 +1,478 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    
+        <title>404 Not Found</title>
+        <link rel="stylesheet" href="./mainStyles.css" title="Style" type="text/css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body oncontextmenu="return false;">
+        <!-- Aletr section -->
+        <div class="container alert__box" id="alert__box">
+            <div id="alertBox" class="main-alert__box-border">
+                <div class="main-alert__box">
+                    <div class="main-alert__box-title text-sha" id="main-alert__box-title">
+                        Description title
+                    </div>
+                    <div class="main-alert__box-description" id="main-alert__box-description">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    </div>
+                    <div class="main-alert__box-button-blok">
+                        <button onclick="closeAlert(1)" class="pro-button main-alert__box-button" type="button">Yopish</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div onclick="closeAlert(0.5)" class="main-alert__background" id="main-alert__background">
+            
+        </div>
+        
+        <!-- Header section -->
+        <div class="container">
+                    <header class="main-header">
+                        <div class="main-header__brand">
+                            <a onclick="openlink('./index.html', 0)">
+                                <img src="https://telegra.ph/file/d6a6b059f41f13c7a5a81.jpg" alt="logo" />
+                            </a>
+                        </div>
+                <div class="main-header__menu-button">
+                    <i onclick="openMenu(0.5)" class="ripple-button mini-button main-header-menu-button__icon fa-solid fa-bars"></i>
+                    
+                </div>
+                
+                <nav class="main-navigation" id="main-navigation">
+                    <ul class="main-navigation__items">
+                        <i onclick="closeMenu(0.5)" class="ripple-button mini-button main-navigation__items-close fa-solid fa-xmark"></i>
+                        <li id="mn1" class="mn1 main-navigation__item active">
+                            <a onclick="openlink('#main-section'); toggleMenu('mn1', 'active')">
+                                <i class="fa-regular fa-home"></i>
+                                Asosiy
+                            </a>
+                        </li>
+                        <li id="mn2" class="mn2 main-navigation__item">
+                            <a onclick="openlink('#about-me'); toggleMenu('mn2', 'active')">
+                                <i class="fa-regular fa-id-card"></i>
+                                Biz haqimizda
+                            </a>
+                        </li>
+                        <li id="mn3" class="mn3 main-navigation__item">
+                            <a onclick="openlink('#youtube-channels-section'); toggleMenu('mn3', 'active')">
+                                <i class="fab fa-youtube-square"></i>
+                                YouTube kanallar
+                            </a>
+                        </li>
+                        <li id="mn4" class="mn4 main-navigation__item">
+                            <a onclick="openlink('#pro-section'); toggleMenu('mn4', 'active')">
+                                <i class="fas fa-spinner"></i>
+                                Premium kino kanal
+                            </a>
+                        </li>
+                        <li id="mn5" class="mn5 main-navigation__item">
+                            <a onclick="openlink('#blog'); toggleMenu('mn5', 'active')">Blog</a>
+                        </li>
+                        <li id="mn6" class="mn6 main-navigation__item">
+                            <a onclick="openlink('#partners'); toggleMenu('mn6', 'active')">Sheriklar</a>
+                        </li>
+                        
+                        
+                    </ul>
+                </nav>
+                
+                <div id="overlay" class="overlay" onclick="toggleMenu()"></div>
+                
+            </header>
+        </div>
+        
+        <div class="scroll-container" id="sc">
+            <!-- Edge indicators (vizual) -->
+            <div class="edge top" id="edgeTop"><div class="bubble" id="bubbleTop">Surtish...</div></div>
+            <div class="edge bottom" id="edgeBottom"><div class="bubble" id="bubbleBottom">Surtish...</div></div>
+
+            <div class="content" id="content">
+
+        <!-- /Header section -->
+        
+        <!-- Main section -->
+        <div class="container">
+            <section id="main-section" class="main-section">
+                <div class="main-section__info">
+                    <h4 class="main-section__welcome to-uppercase">
+                        Salom!
+                        <span class="blur-line"></span>
+                    </h4>
+                    <h1 class="main-section__introduction to-uppercase text-sha">
+                        Kino Vaqti saytiga xush kelibsiz!
+                    </h1>
+                    <h3 class="main-section__TG_channel to-uppercase">
+                        Bu sayt orqali kinolarni onson tomosha qilishingiz mumkin.
+                    </h3>
+                    <div class="main-section__channels to-uppercase">
+                        <a href="https://t.me/bf_va_kinolar">
+                            <i class="fa-brands fa-telegram"></i>
+                            Telegram kanalimiz
+                        </a>
+                    </div>
+                    <button onclick="openlink('https://t.me/bf_va_kinolar')" type="button" class="ripple1-button main-section__action to-uppercase button">
+                       Kanalimizga oʻting
+                    </button>            
+                </div>
+            </section>
+        </div>
+        
+        <!-- /Main section -->
+        <!-- Statistics -->
+        <div class="container">
+            <div class="container">
+                <h4 class="statistics__info to-uppercase">
+                    <i class="fa-brands fa-telegram"></i>
+                    Telegram kanalimiz statistikasi.
+                </h4>
+                <section id="statistics" class="statistics">
+                    <div class="statistics__item">
+                        <h3 class="statistics__number">
+                            <i class="fa-solid fa-users"></i>
+                            <br />
+                            <div id="subs">
+                                277
+                            </div>
+                        </h3>
+                        <p class="statistics__title">
+                            Obunachilar
+                        </p>
+                    </div>
+                    <div class="statistics__item statistics__item-right">
+                        <h3 class="statistics__number">
+                            <i class="fa-solid fa-bell"></i>
+                            <br />
+                            312
+                        </h3>
+                        <p class="statistics__title">
+                            Postlar soni
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!-- /Statistics -->
+        <!-- About me -->
+        <div class="container">
+            <section id="about-me" class="about-me">
+                <div class="about-me__image">
+                    <img class="" src="https://telegra.ph/file/f12ae1a3b858c000bcfd8.png" alt="about-me image" />
+                </div>
+                <div class="about-me_info">
+                    <h5 class="section-subtitle">
+                        Kanalimiz haqida 
+                        <span class="blur-line"></span>
+                    </h5>
+                    <h3 class="section-title text-sha">
+                        Oʻzbek kinolar jamlangan kanal
+                    </h3>
+                    <p class="about-me__description">
+                        Kanalimiz 2025-yil 8-yanvarda ochilgan boʻlib unga koʻplab oʻzbek kinolarni joylaganmiz va hozirgacha joylab kelmoqdamiz agar siz ham qiziqsangiz kanalimizga qoʻshiling!
+                    </p>
+                    <button onclick="openlink('https://t.me/bf_va_kinolar')" type="button" class="ripple1-button button to-uppercase about-me__action">Kanalni koʻrish</button>
+                </div>
+            </section>
+        </div>
+        <!-- /About me -->
+
+        <!-- YouTube channels section -->
+        <div class="container">
+            <section id="youtube-channels-section" class="youtube-channels-section">
+                <h5 class="section-subtitle">
+                    YouTube kanallar marhamat tamosha qilishingiz mumkin!
+                    <span class="blur-line"></span>
+                </h5>
+                <h3 class="section-title text-sha">
+                    Sara YouTube kanallar
+                </h3>
+                <div class="youtube-channels-section__cards">
+                    <a href="http://www.youtube.com/@UzbekFilmsHD">
+                        <div class="youtube-channels-section__card">
+                            <img class="youtube-channels-section-card__image" src="https://telegra.ph/file/c62d5cc5955c304182d9c.jpg" alt="Bu kanalga kirmang xavfli boʻlishi mumkin chunki sayt rasmni yuklay olmadi iloji boʻlsa adminlarga xabar bering ular kanalni tekshirishlari kerak " />
+                            <div class="yt-channels-section-card__title">
+                                UzbekFilmsHD <br />
+                                <span class="blur-line"></span>
+                            </div>
+                            <div class="yt-channels-section-card__description">
+                                UzbekFilmsHD - Bu YouTube kanalda koʻplab oʻzbek kino filmlar va serilallar mavjut.
+                            </div>
+                        </div>
+                    </a>
+                    <a href="http://www.youtube.com/@navotv">
+                        <div class="youtube-channels-section__card">
+                            <img class="youtube-channels-section-card__image" src="https://telegra.ph/file/5cff74bab830e412bc20b.jpg" alt="Bu kanalga kirmang xavfli boʻlishi mumkin chunki sayt rasmni yuklay olmadi iloji boʻlsa adminlarga xabar bering ular kanalni tekshirishlari kerak " />
+                            <div class="yt-channels-section-card__title">
+                                navo.tv <br />
+                                <span class="blur-line"></span>
+                            </div>
+                            <div class="yt-channels-section-card__description">
+                                Navo.tv - O'zbek filmlari, musiqa va YouTubedagi biznes ko'rgazma kanallari.
+                                Barcha huquqlar himoyalangan. Materiallarning to'liq yoki qisman nusxalanishi taqiqlanadi.
+                            </div>
+                        </div>
+                    </a>
+                    <a href="http://www.youtube.com/@FoxMusicCinema">
+                        <div class="youtube-channels-section__card">
+                            <img class="youtube-channels-section-card__image" src="https://telegra.ph/file/4e64a37511823db0558af.jpg" alt="Bu kanalga kirmang xavfli boʻlishi mumkin chunki sayt rasmni yuklay olmadi iloji boʻlsa adminlarga xabar bering ular kanalni tekshirishlari kerak " />
+                            <div class="yt-channels-section-card__title">
+                                Fox Music Cinema <br />
+                                <span class="blur-line"></span>
+                            </div>
+                            <div class="yt-channels-section-card__description">
+                                Fox Music Cinema - Oʻzbek kinolar, seriallar va qiziqarli videolar jamlanga ajoyib kanal.
+                                Kanalni koʻrish uchun ustiga bosing!
+                            </div>
+                        </div>
+                    </a>
+                    <a href="http://www.youtube.com/@nevofilms1">
+                        <div class="youtube-channels-section__card">
+                            <img class="youtube-channels-section-card__image" src="https://telegra.ph/file/6c14b73a358549f838a1a.jpg" alt="Bu kanalga kirmang xavfli boʻlishi mumkin chunki sayt rasmni yuklay olmadi iloji boʻlsa adminlarga xabar bering ular kanalni tekshirishlari kerak " />
+                            <div class="yt-channels-section-card__title">
+                                NevoFilms <br />
+                                <span class="blur-line"></span>
+                            </div>
+                            <div class="yt-channels-section-card__description">
+                                NevoFilms - Oʻzbek va Xorij filmlari,
+                                Premyeralar, Oʻzbek film treylerlari
+                                va mashhur oʻzbek kinolar jamangan kanal
+                            </div>
+                        </div>
+                    </a>
+                    <a href="http://www.youtube.com/@YangiKulgu">
+                        <div class="youtube-channels-section__card">
+                            <img class="youtube-channels-section-card__image" src="https://telegra.ph/file/6fe881f07aab507de8dc8.jpg" alt="Bu kanalga kirmang xavfli boʻlishi mumkin chunki sayt rasmni yuklay olmadi iloji boʻlsa adminlarga xabar bering ular kanalni tekshirishlari kerak " />
+                            <div class="yt-channels-section-card__title">
+                                YangiKulgu Official <br />
+                                <span class="blur-line"></span>
+                            </div>
+                            <div class="yt-channels-section-card__description">
+                                YangiKulgu Official - 
+                                Kanalimizda sizni har kuni yangilangan, qiziqarli komediya turlari va materiallar kutib turadi. Bizning muxlislarimiz uchun har bir video-roligimizni tayyorlab, sizga ko'rsatishga tayyormiz. 
+                                ...
+                            </div>
+                        </div>
+                    </a>
+                    <!--<a href="http://www.youtube.com/@navotv">
+                        <div class="youtube-channels-section__card">
+                            <img class="youtube-channels-section-card__image" src="https://telegra.ph/file/5cff74bab830e412bc20b.jpg" alt="Bu kanalga kirmang xavfli boʻlishi mumkin chunki sayt rasmni yuklay olmadi iloji boʻlsa adminlarga xabar bering ular kanalni tekshirishlari kerak " />
+                            <div class="yt-channels-section-card__title">
+                                navo.tv
+                                <span class="blur-line"></span>
+                            </div>
+                            <div class="yt-channels-section-card__description">
+                                Navo.tv - O'zbek filmlari, musiqa va YouTubedagi biznes ko'rgazma kanallari.
+                                Barcha huquqlar himoyalangan. Materiallarning to'liq yoki qisman nusxalanishi taqiqlanadi.
+                            </div>
+                        </div>
+                    </a>
+                    -->
+                </div>
+            </section>
+        </div>
+        <!-- /YouTube channels section -->
+        
+        <!-- Pro channel section -->
+        <div class="container">
+            <section id="pro-section" class="pro-section margin-10">
+                <h5 class="section-subtitle">
+                    Pro kanalimizga ham obuna boʻlishni unutmang!
+                    Agar hammadan birinchi boʻlib kanalimizga joylanadigan kinolarni koʻrishni istasangiz!
+                    Marhamat bemalol obuna boʻlishingiz mumkin!
+                    Bu kanalga seriallar ham joylanadi @bf_va_kinolar kanalimizda farqli ravishda ✅
+                    <span class="blur-line"></span>
+                </h5>
+                <h3 class="text-middle section-title text-sha margin-10px">
+                    Oyiga atigi 5
+                    <div class="pro-emoji-protect__content">
+                        <img class="text-emoji" src="https://telegra.ph/file/3596204da570c6a8d31af.png" alt="🌟" oncontextmenu="return false;" />
+                    </div>
+                    evaziga!
+                </h3>
+                <div class="pro-channel__join-block">
+                    <div class="pro-channel-join__form">
+                        <div class="pro-channel-join__image">
+                            <img class="pro-join__image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsqJUMqxQ97qiyEuyOCEC4_x2aTlxiupVawA&s" alt="Pro Channel image" />
+                        </div>
+                        <div class="pro-channel-join__description">
+                            ...
+                        </div>
+                        <div class="pro-channel-join__button">
+                            <button onclick="alertf(dTitle='Tamirlash ishlari olib boriloqda', text='Kanal hozir tamirda tez orada ishga tushadi ✅'), timeSleep=1" class="ripple-button pro-join__button"  type="button"> 
+                                <h6 class="text-middle pro-join-button__text-background">
+                                    <div class="pro-join-button__text">
+                                        5
+                                        <div class="pro-emoji-protect__content">
+                                            <img class="button-emoji" src="https://telegra.ph/file/3596204da570c6a8d31af.png" alt="🌟" oncontextmenu="return false;" />
+                                        </div>
+                                        evaziga obuna boʻlish
+                                    </div>
+                                </h6>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- /Pro channel section -->
+        
+        <!-- Blog section -->
+        <div class="container">
+            <section id="blog" class="blog">
+                <div class="section-subtitle">
+                    Mening blogim
+                    <span class="blur-line"></span>
+                </div>
+                <div class="section-title text-sha">
+                    Oxirgi maqolalarim...
+                </div>
+                <div class="blog-items" id="blogItem">
+                    <!--<div class="blog-item">
+                        <div class="blog-item__image">
+                            <img src="https://telegra.ph/file/c62d5cc5955c304182d9c.jpg" alt="blog item 1 image" />
+                        </div>
+                        <div class="blog-item__info">
+                            <div class="blog-item__main-info">
+                                <span class="blog-item__author">
+                                    <i class="main_icon fa-regular fa-user"></i>
+                                    Admin posti
+                                </span>
+                                <span class="main_icon blog-item__date">
+                                    <i class="fa-regular fa-calendar"></i>
+                                    Avg, 8, 2025
+                                </span>
+                            </div>
+                            <h5 class="blog-item__title">
+                                Tez orada yangi kino joylanadi bizni kuzatishda davom eting...
+                            </h5>
+                            <p class="blog-item__description">
+                                Ajoyib premyeralar ketma-ketligi sizni kutib tuipti bizdan uzoqlashmang!
+                            </p>
+                            <a class="blog-item__learn-more" onclick="createApp('https://www.google.com')">
+                                Davomi...
+                            </a>
+                            <div class="blog-item__veaws">
+                                <span class="blog-item-veaws__icon">
+                                    <i class="fa-solid fa-eye"></i>
+                                </span>
+                                <span class="blog-item-veaws__number">
+                                    1k
+                                </span>
+                                <span class="blog-item-veaws__clock">
+                                    14:44
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+                </div>
+            </section>
+        </div>
+        <!-- /Blog section -->
+        
+        <!-- Partners section --> 
+        <section id="partners">
+            <h2>Sheriklarim</h2>
+        </section>
+        <!-- /Partners section -->
+        
+        <!-- Footer section -->
+        <footer class="footer">
+            <button class="ripple-button" type="submit">Tugma 1</button>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#main-section">Asosiy</a>
+                    </li>
+                    <li>
+                        <a href="#about-me">Biz haqimizda</a>
+                    </li>
+                    <li>
+                        <a href="#youtube-channels-section">YouTube kanallar</a>
+                    </li>
+                    <li>
+                        <a href="#pro-section">Premium kino kanal</a>
+                    </li>
+                    <li>
+                        <a href="#blog">Blog</a>
+                    </li>
+                    <li>
+                        <a href="#partners">Sheriklar</a>
+                    </li>
+                </ul>
+            </nav>
+        </footer>
+    </div>
+    </div>
+        <!-- /Footer section -->
+        <!-- Javascript -->
+        <script type="text/javascript" charset="utf-8">
+            const v = document.getElementById("blogItem")
+
+fetch("https://docs.google.com/spreadsheets/d/1XzUtWC6VFYFVqO36Xs9tvwAYUVOCu45P38lMe9lqQMU/gviz/tq?tqx=out:json")//https://docs.google.com/spreadsheets/d/1XJTmtb3bmePZTMtt8jZSKL5stQXgbPbtDwVOpnZClQU/gviz/tq?tqx=out:json")
+.then(res => res.text())
+.then(text => {
+    let json = JSON.parse(text.substring(47, text.length - 2));
+    let rowsList = json.table.rows
+    for(let i = 0; i<rowsList.length; i++){
+        let dc = rowsList[i].c;
+        let rasmURL = "";
+        if (dc[0].v !== "null"){
+            rasmURL = dc[0].v;
+        } else {
+            rasmURL = "https://telegra.ph/file/d6a6b059f41f13c7a5a81.jpg";
+        }
+        let title = dc[1].v;
+        let description = dc[2].v;
+        let postID = dc[3].v;
+        let views = dc[4].v;
+        let sana = dc[5].v;
+        let vaqt = dc[6].v;
+        let blogItem = document.createElement("div");
+        blogItem.className = "blog-item"; //<div class="blog-item"></div>
+        const textHTML = `
+                        <div class="blog-item__image">
+                            <img src="${rasmURL}" alt="Blog item image" />
+                        </div>
+                        <div class="blog-item__info">
+                            <div class="blog-item__main-info">
+                                <span class="blog-item__author">
+                                    <i class="main_icon fa-regular fa-user"></i>
+                                    Admin posti
+                                </span>
+                                <span class="main_icon blog-item__date">
+                                    <i class="fa-regular fa-calendar"></i>
+                                    ${sana}
+                                </span>
+                            </div>
+                            <h5 class="blog-item__title">
+                                ${title}
+                            </h5>
+                            <p class="blog-item__description">
+                                ${description}
+                            </p>
+                            <a class="blog-item__learn-more" onclick="createApp('https://www.google.com')">
+                                Davomi...
+                            </a>
+                            <div class="blog-item__veaws">
+                                <span class="blog-item-veaws__icon">
+                                    <i class="fa-solid fa-eye"></i>
+                                </span>
+                                <span class="blog-item-veaws__number">
+                                    ${views}
+                                </span>
+                                <span class="blog-item-veaws__clock">
+                                    ${vaqt}
+                                </span>
+                            </div>
+                        </div>`
+        blogItem.innerHTML = textHTML;
+        v.appendChild(blogItem);
+    }
+});
+        </script>
+        <script src="./main.js" type="text/javascript" charset="utf-8"></script>
+    </body>
+</html>
