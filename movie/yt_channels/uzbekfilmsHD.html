@@ -1,9 +1,3 @@
-<!-- index.html — Telegram Premium style YouTube MiniApp
-     FEATURES: uploads playlist (all videos), playlists filter, infinite scroll,
-               search, modal player with stats (views,likes,duration), skeleton,
-               dark-mode, back-to-top, Telegram WebApp integration.
-     Replace: API_KEY and CHANNEL_ID before use.
--->
 <!doctype html>
 <html lang="uz">
 <head>
@@ -66,7 +60,6 @@ body {
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 0.2px;
-    
 }
 
 .controls{
@@ -86,7 +79,11 @@ body {
 .filter-item.active{background:var(--neon);box-shadow:0 8px 24px rgba(42,171,238,0.06);color:#e9fbff}
 
 /* grid */
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.grid {
+     display:grid;
+     grid-template-columns:repeat(1,1fr);
+     gap:12px
+}
 @media(min-width:720px){.grid{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:1000px){.grid{grid-template-columns:repeat(4,1fr)}}
 
