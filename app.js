@@ -67,7 +67,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   async function getResult(query) {
     try {
-      const res = await fetch(`${api.baseurl}?city=${query}&country=Uzbekistan&method=3`);
+      const res = await fetch(`${api.baseurl}?city=${query}&country=Uzbekistan&method=99&methodSettings=15.5%2C1.5%2C15.5&school=1&tune=2,0,0,0,0,2,0,0`);
       const result = await res.json();
       const re = result.data.timings;
 
