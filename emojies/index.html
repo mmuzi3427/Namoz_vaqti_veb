@@ -10,6 +10,16 @@
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
+    /* `:active` o'rniga `.pressed` klassini ishlatamiz */
+    .key.pressed {
+      background-color: #b4b7c1 !important;
+      transform: scale(0.96); /* iOS-ga xos tugma bosilish reaksiyasi */
+    }
+
+    .key-enter.pressed {
+      background-color: #0056b3 !important;
+    }
+
 
     body {
       background-color: #f2f2f7;
@@ -179,39 +189,39 @@
     // Web Audio API orqali tugma bosilish ovozini hosil qilish
     let audioCtx = null;
 
-    function playKeySound(isSpecial = false) {
-      try {
-        if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') {
-          audioCtx.resume();
-        }
-
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-
-        osc.type = 'sine';
-        
-        if (isSpecial) {
-          osc.frequency.setValueAtTime(120, audioCtx.currentTime);
-          gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
-        } else {
-          osc.frequency.setValueAtTime(180, audioCtx.currentTime);
-          gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
-        }
-
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.04);
-
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-
-        osc.start();
-        osc.stop(audioCtx.currentTime + 0.04);
-      } catch (e) {
-        console.log("Audio xatosi:", e);
-      }
+function playKeySound(isSpecial = false) {
+  try {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.type = 'sine';
+    
+    if (isSpecial) {
+      osc.frequency.setValueAtTime(140, audioCtx.currentTime);
+      gain.gain.setValueAtTime(0.5, audioCtx.currentTime); // Ovoz balandligi oshirildi
+    } else {
+      osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+      gain.gain.setValueAtTime(0.7, audioCtx.currentTime); // Ovoz balandligi oshirildi
+    }
+
+    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.05);
+  } catch (e) {
+    console.log("Audio xatosi:", e);
+  }
+}
 
     // Klaviatura maketlari
     const layouts = {
@@ -356,6 +366,21 @@
 
     renderKeyboard();
     initKeyboardEvents();
+    // Tugmaga bosish reaksiyasini kafolatlash uchun eventlar
+['mousedown', 'touchstart'].forEach(eventType => {
+  btn.addEventListener(eventType, (e) => {
+    e.preventDefault();
+    btn.classList.add('pressed'); // Rangini darhol o'zgartirish
+    handleKeyPress(key);
+  });
+});
+
+['mouseup', 'mouseleave', 'touchend', 'touchcancel'].forEach(eventType => {
+  btn.addEventListener(eventType, () => {
+    btn.classList.remove('pressed'); // Bosish to'xtaganda asliga qaytarish
+  });
+});
+
   </script>
 </body>
 </html>
