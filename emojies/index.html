@@ -10,16 +10,6 @@
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
       -webkit-tap-highlight-color: transparent;
     }
-    /* `:active` o'rniga `.pressed` klassini ishlatamiz */
-    .key.pressed {
-      background-color: #b4b7c1 !important;
-      transform: scale(0.96); /* iOS-ga xos tugma bosilish reaksiyasi */
-    }
-
-    .key-enter.pressed {
-      background-color: #0056b3 !important;
-    }
-
 
     body {
       background-color: #f2f2f7;
@@ -102,10 +92,13 @@
       justify-content: center;
       box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
       cursor: pointer;
+      transition: background-color 0.05s, transform 0.05s;
     }
 
-    .key:active {
-      background-color: #b4b7c1;
+    /* Tugma bosilgandagi animatsiya va rang */
+    .key.pressed {
+      background-color: #b4b7c1 !important;
+      transform: scale(0.95);
     }
 
     /* Maxsus tugmalar */
@@ -128,8 +121,8 @@
       font-weight: 500;
     }
 
-    .key-enter:active {
-      background-color: #0056b3;
+    .key-enter.pressed {
+      background-color: #0056b3 !important;
     }
 
     /* Yopish tugmasi */
@@ -186,42 +179,42 @@
     const keysContainer = document.getElementById('keyboard-keys');
     const closeBtn = document.getElementById('kb-close');
 
-    // Web Audio API orqali tugma bosilish ovozini hosil qilish
+    // Web Audio API orqali tugma bosilish ovozi
     let audioCtx = null;
 
-function playKeySound(isSpecial = false) {
-  try {
-    if (!audioCtx) {
-      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playKeySound(isSpecial = false) {
+      try {
+        if (!audioCtx) {
+          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+
+        osc.type = 'sine';
+        
+        if (isSpecial) {
+          osc.frequency.setValueAtTime(140, audioCtx.currentTime);
+          gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
+        } else {
+          osc.frequency.setValueAtTime(220, audioCtx.currentTime);
+          gain.gain.setValueAtTime(0.7, audioCtx.currentTime);
+        }
+
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.05);
+      } catch (e) {
+        console.log("Audio xatosi:", e);
+      }
     }
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-
-    osc.type = 'sine';
-    
-    if (isSpecial) {
-      osc.frequency.setValueAtTime(140, audioCtx.currentTime);
-      gain.gain.setValueAtTime(0.5, audioCtx.currentTime); // Ovoz balandligi oshirildi
-    } else {
-      osc.frequency.setValueAtTime(220, audioCtx.currentTime);
-      gain.gain.setValueAtTime(0.7, audioCtx.currentTime); // Ovoz balandligi oshirildi
-    }
-
-    gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
-
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.05);
-  } catch (e) {
-    console.log("Audio xatosi:", e);
-  }
-}
 
     // Klaviatura maketlari
     const layouts = {
@@ -272,14 +265,19 @@ function playKeySound(isSpecial = false) {
             btn.textContent = 'tayyor';
           }
 
-          btn.addEventListener('mousedown', (e) => {
-            e.preventDefault();
-            handleKeyPress(key);
+          // Tugmaga bosish reaksiyasi (pressed effekti uchun eventlar)
+          ['mousedown', 'touchstart'].forEach(eventType => {
+            btn.addEventListener(eventType, (e) => {
+              e.preventDefault();
+              btn.classList.add('pressed');
+              handleKeyPress(key);
+            });
           });
 
-          btn.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            handleKeyPress(key);
+          ['mouseup', 'mouseleave', 'touchend', 'touchcancel'].forEach(eventType => {
+            btn.addEventListener(eventType, () => {
+              btn.classList.remove('pressed');
+            });
           });
 
           rowDiv.appendChild(btn);
@@ -340,12 +338,11 @@ function playKeySound(isSpecial = false) {
       activeInput.dispatchEvent(new Event('input', { bubbles: true }));
     }
 
-    // Input va textarealarni man qilish (Asosiy tuzatish)
+    // Inputlar nazorati
     function initKeyboardEvents() {
       const inputs = document.querySelectorAll('input, textarea');
 
       inputs.forEach(input => {
-        // Mobil qurilmaning o'z klaviaturasi chiqib ketmasligi uchun:
         input.setAttribute('inputmode', 'none'); 
 
         const openKB = (e) => {
@@ -366,21 +363,6 @@ function playKeySound(isSpecial = false) {
 
     renderKeyboard();
     initKeyboardEvents();
-    // Tugmaga bosish reaksiyasini kafolatlash uchun eventlar
-['mousedown', 'touchstart'].forEach(eventType => {
-  btn.addEventListener(eventType, (e) => {
-    e.preventDefault();
-    btn.classList.add('pressed'); // Rangini darhol o'zgartirish
-    handleKeyPress(key);
-  });
-});
-
-['mouseup', 'mouseleave', 'touchend', 'touchcancel'].forEach(eventType => {
-  btn.addEventListener(eventType, () => {
-    btn.classList.remove('pressed'); // Bosish to'xtaganda asliga qaytarish
-  });
-});
-
   </script>
 </body>
 </html>
